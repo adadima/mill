@@ -2,12 +2,16 @@ import $file.ci.shared
 import $file.ci.upload
 import java.nio.file.attribute.PosixFilePermission
 import $ivy.`org.scalaj::scalaj-http:2.4.1`
+import $ivy.`com.lihaoyi::mill-contrib-bloop:0.4.1`
+import $ivy.`com.lihaoyi::mill-contrib-bsp:0.4.0-12-102ddf-DIRTYee92624c`
+import ammonite.ops._
 
 import coursier.maven.MavenRepository
 import mill._
 import mill.scalalib._
 import publish._
 import mill.modules.Jvm.createAssembly
+
 trait MillPublishModule extends PublishModule{
 
   def artifactName = "mill-" + super.artifactName()
@@ -375,6 +379,17 @@ object contrib extends MillModule {
       ivy"com.lihaoyi::ujson-circe:0.7.4"
     )
     def testArgs = T(scalanativelib.testArgs())
+  }
+
+  object bsp extends MillModule {
+    // override def publishVersion = "0.0.1"
+
+    def moduleDeps = Seq(scalalib, scalajslib, main, scalanativelib)
+    def ivyDeps = Agg(
+      ivy"ch.epfl.scala:bsp4j:2.0.0-M4",
+      ivy"org.eclipse.lsp4j:org.eclipse.lsp4j:0.7.1",
+      ivy"com.typesafe.play::play-json:2.6.9"
+    )
   }
 }
 
