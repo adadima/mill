@@ -2,8 +2,11 @@ import $file.ci.shared
 import $file.ci.upload
 import java.nio.file.attribute.PosixFilePermission
 import $ivy.`org.scalaj::scalaj-http:2.4.1`
-import $ivy.`com.lihaoyi::mill-contrib-bloop:0.4.1`
-import $ivy.`com.lihaoyi::mill-contrib-bsp:0.4.0-12-102ddf-DIRTYee92624c`
+//import $ivy.`com.lihaoyi::mill-contrib-bsp:0.4.1-5-893695-DIRTY959356dc`
+
+// to use the currently developed bsp integration
+// publish this version of mill locally on your computer and include it in the import above. For example my local published
+// mill has version 0.4.1-5-893695-DIRTY959356dc
 import ammonite.ops._
 
 import coursier.maven.MavenRepository
@@ -388,7 +391,8 @@ object contrib extends MillModule {
     def ivyDeps = Agg(
       ivy"ch.epfl.scala:bsp4j:2.0.0-M4",
       ivy"org.eclipse.lsp4j:org.eclipse.lsp4j:0.7.1",
-      ivy"com.typesafe.play::play-json:2.6.9"
+      ivy"com.typesafe.play::play-json:2.6.9",
+      ivy"org.scala-sbt:test-interface:1.0"
     )
   }
 }
