@@ -2,11 +2,9 @@ import $file.ci.shared
 import $file.ci.upload
 import java.nio.file.attribute.PosixFilePermission
 import $ivy.`org.scalaj::scalaj-http:2.4.1`
-//import $ivy.`com.lihaoyi::mill-contrib-bsp:0.4.1-5-893695-DIRTY959356dc`
+//import $ivy.`com.lihaoyi::mill-contrib-bloop:0.4.0`
+//import $ivy.`com.lihaoyi::mill-contrib-bsp:0.4.1-7-be21ae-DIRTY1fe41d7a`
 
-// to use the currently developed bsp integration
-// publish this version of mill locally on your computer and include it in the import above. For example my local published
-// mill has version 0.4.1-5-893695-DIRTY959356dc
 import ammonite.ops._
 
 import coursier.maven.MavenRepository
@@ -517,7 +515,7 @@ def launcherScript(shellJvmArgs: Seq[String],
 }
 
 object dev extends MillModule{
-  def moduleDeps = Seq(scalalib, scalajslib, scalanativelib, contrib.scalapblib, contrib.tut, contrib.scoverage)
+  def moduleDeps = Seq(contrib.bsp, contrib.bloop, scalalib, scalajslib, scalanativelib, contrib.scalapblib, contrib.tut, contrib.scoverage)
 
 
   def forkArgs =
