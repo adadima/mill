@@ -10,6 +10,9 @@ import mill.modules.Jvm.{createAssembly, createJar}
 import Lib._
 import mill.scalalib.publish.{Artifact, Scope}
 import mill.api.Loose.Agg
+import sbt.internal.inc.ManagedLoggedReporter
+import sbt.internal.util.{ConsoleOut, MainAppender}
+import sbt.util.LogExchange
 
 /**
   * Core configuration required to compile a single Scala compilation target
@@ -206,15 +209,17 @@ trait JavaModule extends mill.Module with TaskModule { outer =>
     } yield PathRef(path)
   }
 
+
   /**
     * Compiles the current module to generate compiled classfiles/bytecode
     */
-  def compile: T[mill.scalalib.api.CompilationResult] = T.persistent{
+  def compile: T[mill.scalalib.api.CompilationResult] = T.persistent {
     zincWorker.worker().compileJava(
       upstreamCompileOutput(),
       allSourceFiles().map(_.path),
       compileClasspath().map(_.path),
-      javacOptions()
+      javacOptions(),
+      T.ctx().reporter
     )
   }
 
