@@ -3,7 +3,7 @@ import $file.ci.upload
 import java.nio.file.attribute.PosixFilePermission
 import $ivy.`org.scalaj::scalaj-http:2.4.1`
 //import $ivy.`com.lihaoyi::mill-contrib-bloop:0.4.0`
-import $ivy.`com.lihaoyi::mill-contrib-bsp:0.4.1-10-357479-DIRTY5bd23b11`
+import $ivy.`com.lihaoyi::mill-contrib-bsp:0.4.1-14-eea362-DIRTYf47e4550`
 
 import ammonite.ops._
 
