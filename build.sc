@@ -85,6 +85,7 @@ object main extends MillModule {
   }
   object api extends MillApiModule{
     def ivyDeps = Agg(
+      ivy"ch.epfl.scala:bsp4j:2.0.0-M4",
       ivy"org.scala-sbt::zinc:1.2.5",
       ivy"com.lihaoyi::os-lib:0.2.6",
       ivy"com.lihaoyi::upickle:0.7.1",
@@ -104,7 +105,8 @@ object main extends MillModule {
       ivy"net.java.dev.jna:jna:4.5.0",
       ivy"net.java.dev.jna:jna-platform:4.5.0",
       ivy"org.scala-sbt:test-interface:1.0",
-      ivy"org.scala-sbt::zinc:1.2.5"
+      ivy"org.scala-sbt::zinc:1.2.5",
+      ivy"ch.epfl.scala:bsp4j:2.0.0-M4"
     )
 
     def generatedSources = T {
@@ -209,7 +211,9 @@ object scalalib extends MillModule {
     def moduleDeps = Seq(main.api, main)
     def ivyDeps = Agg(
       // Keep synchronized with zinc in Versions.scala
-      ivy"org.scala-sbt::zinc:1.2.5"
+      ivy"org.scala-sbt::zinc:1.2.5",
+      ivy"ch.epfl.scala:bsp4j:2.0.0-M4",
+      ivy"org.scala-sbt:test-interface:1.0"
     )
   }
   object worker extends MillApiModule{
