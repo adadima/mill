@@ -609,7 +609,7 @@ trait TestModule extends JavaModule with TaskModule {
       runClasspath().map(_.path),
       Agg(compile().classes.path),
       args,
-      T.ctx.bsp
+      T.ctx().bsp
     )
 
     TestModule.handleResults(doneMsg, results)
