@@ -219,7 +219,7 @@ trait JavaModule extends mill.Module with TaskModule { outer =>
       allSourceFiles().map(_.path),
       compileClasspath().map(_.path),
       javacOptions() ++ T.ctx.bsp.args,
-      T.ctx().reporter
+      T.ctx().reporter(hashCode)
     )
   }
 

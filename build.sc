@@ -84,6 +84,7 @@ object main extends MillModule {
     }
   }
   object api extends MillApiModule{
+    //def moduleDeps = Seq(core)
     def ivyDeps = Agg(
       ivy"ch.epfl.scala:bsp4j:2.0.0-M4",
       ivy"org.scala-sbt::zinc:1.2.5",
