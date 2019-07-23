@@ -2,8 +2,6 @@ import $file.ci.shared
 import $file.ci.upload
 import java.nio.file.attribute.PosixFilePermission
 import $ivy.`org.scalaj::scalaj-http:2.4.1`
-//import $ivy.`com.lihaoyi::mill-contrib-bloop:0.4.0`
-//import $ivy.`com.lihaoyi::mill-contrib-bsp:0.5.0-38-08f160-DIRTY27d7a299`
 
 import ammonite.ops._
 
@@ -403,7 +401,7 @@ object contrib extends MillModule {
     def moduleDeps = Seq(scalalib, scalajslib, main, scalanativelib)
     def ivyDeps = Agg(
       ivy"ch.epfl.scala:bsp4j:2.0.0-M4",
-      ivy"org.eclipse.lsp4j:org.eclipse.lsp4j:0.7.1",
+      //ivy"org.eclipse.lsp4j:org.eclipse.lsp4j:0.7.1",
       ivy"com.typesafe.play::play-json:2.6.9",
       ivy"org.scala-sbt:test-interface:1.0",
       ivy"org.scala-sbt::zinc:1.2.5",
