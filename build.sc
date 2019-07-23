@@ -401,7 +401,6 @@ object contrib extends MillModule {
     def moduleDeps = Seq(scalalib, scalajslib, main, scalanativelib)
     def ivyDeps = Agg(
       ivy"ch.epfl.scala:bsp4j:2.0.0-M4",
-      //ivy"org.eclipse.lsp4j:org.eclipse.lsp4j:0.7.1",
       ivy"com.typesafe.play::play-json:2.6.9",
       ivy"org.scala-sbt:test-interface:1.0",
       ivy"org.scala-sbt::zinc:1.2.5",
