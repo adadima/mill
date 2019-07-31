@@ -406,6 +406,14 @@ object contrib extends MillModule {
       ivy"org.scala-sbt::zinc:1.2.5",
       ivy"org.scala-lang.modules::scala-java8-compat:0.9.0"
     )
+
+    class Tests(ctx0: mill.define.Ctx) extends super.Tests(ctx0) {
+      override def testFrameworks = Seq("org.scalatest.tools.Framework")
+
+      override def ivyDeps = super.ivyDeps() ++ Agg(ivy"org.scalatest::scalatest:3.0.4",
+                                                  ivy"org.scalactic::scalactic:3.0.5")
+    }
+    val test = new Tests(implicitly)
   }
 }
 
