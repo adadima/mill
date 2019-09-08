@@ -3,8 +3,6 @@ import $file.ci.upload
 import java.nio.file.attribute.PosixFilePermission
 import $ivy.`org.scalaj::scalaj-http:2.4.1`
 
-import ammonite.ops._
-
 import coursier.maven.MavenRepository
 import mill._
 import mill.scalalib._
@@ -62,9 +60,8 @@ trait MillModule extends MillApiModule{ outer =>
 
 
 object main extends MillModule {
-  def moduleDeps = Seq(core, client, main.api)
+  def moduleDeps = Seq(core, client)
 
-  def ivyDeps = Agg(ivy"org.scala-sbt::zinc:1.2.5")
   def compileIvyDeps = Agg(
     ivy"org.scala-lang:scala-reflect:${scalaVersion()}"
   )
@@ -82,10 +79,7 @@ object main extends MillModule {
     }
   }
   object api extends MillApiModule{
-    //def moduleDeps = Seq(core)
     def ivyDeps = Agg(
-      ivy"ch.epfl.scala:bsp4j:2.0.0-M4",
-      ivy"org.scala-sbt::zinc:1.2.5",
       ivy"com.lihaoyi::os-lib:0.2.6",
       ivy"com.lihaoyi::upickle:0.7.1",
     )
@@ -102,10 +96,7 @@ object main extends MillModule {
       ivy"com.lihaoyi:::ammonite:1.6.9",
       // Necessary so we can share the JNA classes throughout the build process
       ivy"net.java.dev.jna:jna:4.5.0",
-      ivy"net.java.dev.jna:jna-platform:4.5.0",
-      ivy"org.scala-sbt:test-interface:1.0",
-      ivy"org.scala-sbt::zinc:1.2.5",
-      ivy"ch.epfl.scala:bsp4j:2.0.0-M4"
+      ivy"net.java.dev.jna:jna-platform:4.5.0"
     )
 
     def generatedSources = T {
@@ -169,8 +160,7 @@ object scalalib extends MillModule {
 
   def ivyDeps = Agg(
     ivy"org.scala-sbt:test-interface:1.0",
-    ivy"org.scalameta::scalafmt-dynamic:2.0.0-RC6",
-    ivy"org.scala-sbt::zinc:1.2.5"
+    ivy"org.scalameta::scalafmt-dynamic:2.0.0-RC6"
   )
 
   def genTask(m: ScalaModule) = T.task{
@@ -195,7 +185,6 @@ object scalalib extends MillModule {
       "-DMILL_SCALA_LIB=" + runClasspath().map(_.path).mkString(",")
     )
   }
-
   object backgroundwrapper extends MillPublishModule{
     def ivyDeps = Agg(
       ivy"org.scala-sbt:test-interface:1.0"
@@ -207,13 +196,7 @@ object scalalib extends MillModule {
     }
   }
   object api extends MillApiModule{
-    def moduleDeps = Seq(main.api, main)
-    def ivyDeps = Agg(
-      // Keep synchronized with zinc in Versions.scala
-      ivy"org.scala-sbt::zinc:1.2.5",
-      ivy"ch.epfl.scala:bsp4j:2.0.0-M4",
-      ivy"org.scala-sbt:test-interface:1.0"
-    )
+    def moduleDeps = Seq(main.api)
   }
   object worker extends MillApiModule{
 
@@ -450,7 +433,7 @@ object scalanativelib extends MillModule {
           ivy"org.scala-native::util:${scalaNativeVersion()}",
           ivy"org.scala-native::nir:${scalaNativeVersion()}",
           ivy"org.scala-native::nir:${scalaNativeVersion()}",
-          ivy"org.scala-native::test-runner:${scalaNativeVersion()}"
+          ivy"org.scala-native::test-runner:${scalaNativeVersion()}",
         )
     }
   }
